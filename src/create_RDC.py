@@ -144,9 +144,9 @@ class RDCProcessor:
         # Create Word and PDF
         shutil.copy(source_file, target_file)
 
-        self.t1 = time.time()
+        self.t0 = time.time()
         self.open_word(target_file)
-        logger.debug("Open/close Word : {}sec".format(round(time.time() - self.t1, 3)))
+        logger.debug("Open/close Word : {}sec".format(round(time.time() - self.t0, 3)))
 
     def compute_df(self, df):
 
@@ -197,9 +197,9 @@ class RDCProcessor:
         self.t0 = time.time()
         return df
 
-    def get_df(self, t0):
+    def get_df(self):
         """Read csv and format dataframe"""
-        t0 = time.time()
+        self.t0 = time.time()
         df_full = pd.read_csv(
             os.path.join(DIR_OUT, "Data.csv"),
             header=None,
@@ -208,7 +208,7 @@ class RDCProcessor:
             + [f"test {i}" for i in range(1, 11)],
             index_col=None,
         )
-        logger.debug("csv succesfully read : {}sec".format(round(time.time() - t0, 3)))
+        logger.debug("csv succesfully read : {}sec".format(round(time.time() - self.t0, 3)))
         return df_full
 
     def clean_folder(self):
@@ -255,9 +255,9 @@ class RDCProcessor:
 
         self.word.Quit()
 
-        self.t1 = time.time()
+        self.t0 = time.time()
         self.merge_pdf()
-        logger.debug("Merge all PDF : {}sec".format(round(time.time() - self.t1, 3)))
+        logger.debug("Merge all PDF : {}sec".format(round(time.time() - self.t0, 3)))
         logger.info("end of script")
 
 

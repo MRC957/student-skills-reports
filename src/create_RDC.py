@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+Sébastien Van Laecke - 25/03/2024
+"""
+
 import pandas as pd
 import os
 import logging
